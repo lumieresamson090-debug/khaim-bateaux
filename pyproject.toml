@@ -1,12 +1,7 @@
 [project]
 name = "khaim-bateaux"
 version = "1.0.0"
-dependencies = [
-  "flet==0.27.6",
-  "requests"
-]
+dependencies = ["flet==0.27.6", "requests"]
 
 [tool.flet]
-product = "K-HAIM BATEAU"
 org = "com.khaim.bateau"
-company = "K-HAIM"
