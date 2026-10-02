@@ -1,15 +1,10 @@
 name: Build K-HAIM APK
-on: [push, workflow_dispatch]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: flet-dev/flet-build-action@v1
-        id: build
+      - uses: flet-dev/flet-build-action@v2
         with:
-          target: apk
-      - uses: actions/upload-artifact@v4
-        with:
-          name: K-HAIM-BATEAU-APK
-          path: ${{ steps.build.outputs.archive-path }}
+          args: build apk --verbose
