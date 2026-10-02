@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: flet-dev/flet-build-action@v2
+      - uses: flet-dev/flet-build-action@v1
         with:
-          args: build apk --verbose
+          target: apk
