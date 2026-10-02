@@ -1,0 +1,10 @@
+[project]
+name = "khaim-bateaux"
+version = "1.0.0"
+description = "Suivi traversées Lac Tanganyika"
+dependencies = ["flet==0.27.6", "requests"]
+
+[tool.flet]
+product = "K-HAIM Bateaux"
+org = "com.khaim.bateaux"
+company = "K-HAIM"
