@@ -35,7 +35,7 @@ def main(page: ft.Page):
     page.padding = 0
     page.scroll = ft.ScrollMode.AUTO
 
-    # Dictionnaire pour stocker l'équipage (remplace page.session)
+    # Dictionnaire pour stocker les infos de session
     donnees_session = {"equipage": "Non spécifié", "route": ""}
 
     # ==========================================
@@ -61,11 +61,10 @@ def main(page: ft.Page):
         page.update()
 
     def naviguer(route):
-        """Fonction utilitaire pour naviguer entre les pages."""
         page.go(route)
 
     # ==========================================
-    # ÉTATS GLOBAUX
+    # ÉTATS GLOBAUX (compteurs)
     # ==========================================
     selected_route = ft.Text(value="", visible=False)
     count_eco = ft.Text("0", size=28, weight=ft.FontWeight.BOLD)
@@ -157,8 +156,10 @@ def main(page: ft.Page):
             return ft.Container(
                 expand=True, bgcolor=couleur, border_radius=10, padding=15,
                 content=ft.Column([
-                    ft.Text(valeur, size=20, weight=ft.FontWeight.BOLD, color=AppColors.WHITE if couleur != AppColors.YELLOW else AppColors.DARK_BLUE),
-                    ft.Text(label, size=11, color=AppColors.WHITE if couleur != AppColors.YELLOW else AppColors.DARK_BLUE)
+                    ft.Text(valeur, size=20, weight=ft.FontWeight.BOLD,
+                            color=AppColors.WHITE if couleur != AppColors.YELLOW else AppColors.DARK_BLUE),
+                    ft.Text(label, size=11,
+                            color=AppColors.WHITE if couleur != AppColors.YELLOW else AppColors.DARK_BLUE)
                 ], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
             )
 
@@ -185,27 +186,37 @@ def main(page: ft.Page):
 
                     liste_voyages.controls.append(
                         ft.Container(
-                            bgcolor=AppColors.WHITE, border_radius=10, padding=15, margin=ft.margin.only(bottom=10),
+                            bgcolor=AppColors.WHITE, border_radius=10, padding=15,
+                            margin=ft.margin.only(bottom=10),
                             content=ft.Column([
                                 ft.Row([
                                     ft.Icon(ft.icons.DIRECTIONS_BOAT, color=AppColors.DARK_BLUE, size=24),
                                     ft.Column([
-                                        ft.Text(v.get("route", "N/A"), weight=ft.FontWeight.BOLD, color=AppColors.DARK_BLUE, size=15),
-                                        ft.Text(f"Date : {v.get('date', 'N/A')}", size=11, color=AppColors.TEXT_GRAY),
+                                        ft.Text(v.get("route", "N/A"), weight=ft.FontWeight.BOLD,
+                                                color=AppColors.DARK_BLUE, size=15),
+                                        ft.Text(f"Date : {v.get('date', 'N/A')}", size=11,
+                                                color=AppColors.TEXT_GRAY),
                                     ], spacing=2, expand=True),
                                     ft.Container(
-                                        content=ft.Text(v.get("statut", "Terminé"), size=10, color=AppColors.WHITE, weight=ft.FontWeight.BOLD),
-                                        bgcolor=AppColors.GREEN, padding=ft.padding.symmetric(horizontal=8, vertical=4), border_radius=5
+                                        content=ft.Text(v.get("statut", "Terminé"), size=10,
+                                                        color=AppColors.WHITE, weight=ft.FontWeight.BOLD),
+                                        bgcolor=AppColors.GREEN,
+                                        padding=ft.padding.symmetric(horizontal=8, vertical=4),
+                                        border_radius=5
                                     )
                                 ]),
                                 ft.Divider(height=5),
                                 ft.Row([
-                                    ft.Text(f"👥 Passagers : {v.get('passagers_total', 0)}", size=12, color=AppColors.TEXT_GRAY),
-                                    ft.Text(f"📦 Cargo : {v.get('cargo_kg', 0)} kg", size=12, color=AppColors.TEXT_GRAY),
+                                    ft.Text(f"👥 Passagers : {v.get('passagers_total', 0)}", size=12,
+                                            color=AppColors.TEXT_GRAY),
+                                    ft.Text(f"📦 Cargo : {v.get('cargo_kg', 0)} kg", size=12,
+                                            color=AppColors.TEXT_GRAY),
                                 ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
                                 ft.Row([
-                                    ft.Text(f"💰 Recette : {v.get('recette', 0)} $", size=13, weight=ft.FontWeight.BOLD, color=AppColors.GREEN),
-                                    ft.Text(f"Équipage : {v.get('equipage', 'N/A')}", size=11, color=AppColors.TEXT_GRAY),
+                                    ft.Text(f"💰 Recette : {v.get('recette', 0)} $", size=13,
+                                            weight=ft.FontWeight.BOLD, color=AppColors.GREEN),
+                                    ft.Text(f"Équipage : {v.get('equipage', 'N/A')}", size=11,
+                                            color=AppColors.TEXT_GRAY),
                                 ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
                             ])
                         )
@@ -221,7 +232,8 @@ def main(page: ft.Page):
             bgcolor=AppColors.DARK_BLUE,
             padding=ft.padding.only(top=50, left=20, right=20, bottom=20),
             content=ft.Row([
-                ft.IconButton(ft.icons.ARROW_BACK, icon_color=AppColors.WHITE, on_click=lambda _: naviguer("/")),
+                ft.IconButton(ft.icons.ARROW_BACK, icon_color=AppColors.WHITE,
+                              on_click=lambda _: naviguer("/")),
                 ft.Column([
                     ft.Text("K-HAIM PATRON", color=AppColors.WHITE, size=20, weight=ft.FontWeight.BOLD),
                     ft.Text("Suivi des traversées", color=AppColors.YELLOW, size=12),
@@ -239,7 +251,8 @@ def main(page: ft.Page):
                     ft.Container(height=10),
                     stats_row,
                     ft.Container(height=20),
-                    ft.Text("Historique des traversées", size=16, weight=ft.FontWeight.BOLD, color=AppColors.DARK_BLUE),
+                    ft.Text("Historique des traversées", size=16, weight=ft.FontWeight.BOLD,
+                            color=AppColors.DARK_BLUE),
                     ft.Container(height=10),
                     liste_voyages
                 ])
@@ -282,7 +295,8 @@ def main(page: ft.Page):
                 bgcolor=AppColors.DARK_BLUE,
                 padding=ft.padding.only(top=50, left=20, right=20, bottom=20),
                 content=ft.Row([
-                    ft.IconButton(ft.icons.ARROW_BACK, icon_color=AppColors.WHITE, on_click=lambda _: naviguer("/")),
+                    ft.IconButton(ft.icons.ARROW_BACK, icon_color=AppColors.WHITE,
+                                  on_click=lambda _: naviguer("/")),
                     ft.Column([
                         ft.Text("K-HAIM ÉQUIPAGE", color=AppColors.WHITE, size=20, weight=ft.FontWeight.BOLD),
                         ft.Text("Nouvelle traversée", color=AppColors.YELLOW, size=12),
@@ -356,15 +370,16 @@ def main(page: ft.Page):
             bgcolor=AppColors.DARK_BLUE,
             padding=ft.padding.only(top=50, left=20, right=20, bottom=20),
             content=ft.Row([
-                ft.IconButton(ft.icons.ARROW_BACK, icon_color=AppColors.WHITE, on_click=lambda _: naviguer("/route")),
+                ft.IconButton(ft.icons.ARROW_BACK, icon_color=AppColors.WHITE,
+                              on_click=lambda _: naviguer("/route")),
                 ft.Column([
-                    ft.Text(f"Route : {selected_route.value}", color=AppColors.WHITE, size=14, weight=ft.FontWeight.BOLD),
+                    ft.Text(f"Route : {selected_route.value}", color=AppColors.WHITE, size=14,
+                            weight=ft.FontWeight.BOLD),
                     ft.Text("Enregistrement de la traversée", color=AppColors.YELLOW, size=11),
                 ], spacing=2)
             ])
         )
 
-        # ⚠️ IMPORTANT : Liste de tous les éléments à afficher
         contenu_scrollable = ft.Column([
             counter_row("ÉCO (25$)", PRIX_ECO, count_eco),
             ft.Container(height=5),
@@ -390,7 +405,7 @@ def main(page: ft.Page):
                 ),
                 on_click=terminer
             ),
-            ft.Container(height=30),  # Espace en bas
+            ft.Container(height=30),
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=0)
 
         return ft.Column([
@@ -398,7 +413,7 @@ def main(page: ft.Page):
             ft.Container(
                 padding=15,
                 expand=True,
-                content=ft.ListView(  # ⚠️ Utiliser ListView pour le scroll
+                content=ft.ListView(
                     [contenu_scrollable],
                     expand=True,
                     auto_scroll=False,
@@ -406,11 +421,12 @@ def main(page: ft.Page):
                 )
             )
         ], expand=True)
+
     # ==========================================
     # VUE LOGIN
     # ==========================================
-    def view_login():
-        pin_field = ft.TextField(label="PIN Patron (1234)", password=True, width=250, border_radius=10)
+def view_login():
+        pin_field = ft.TextField(label="Code d'accès Patron", password=True, width=250, border_radius=10)
 
         def go_equipage(e):
             naviguer("/route")
@@ -419,7 +435,7 @@ def main(page: ft.Page):
             if pin_field.value == "2404":
                 naviguer("/patron")
             else:
-                pin_field.error_text = "PIN incorrect"
+                pin_field.error_text = "Code incorrect"
                 page.update()
 
         return ft.Column([
@@ -433,7 +449,8 @@ def main(page: ft.Page):
                 icon=ft.icons.GROUPS,
                 bgcolor=AppColors.YELLOW, color=AppColors.DARK_BLUE,
                 width=280, height=55,
-                style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10), text_style=ft.TextStyle(weight=ft.FontWeight.BOLD)),
+                style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10),
+                                     text_style=ft.TextStyle(weight=ft.FontWeight.BOLD)),
                 on_click=go_equipage
             ),
             ft.Container(height=20),
@@ -446,7 +463,8 @@ def main(page: ft.Page):
                 icon=ft.icons.ADMIN_PANEL_SETTINGS,
                 bgcolor=AppColors.DARK_BLUE, color=AppColors.WHITE,
                 width=280, height=55,
-                style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10), text_style=ft.TextStyle(weight=ft.FontWeight.BOLD)),
+                style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10),
+                                     text_style=ft.TextStyle(weight=ft.FontWeight.BOLD)),
                 on_click=go_patron
             ),
             ft.Container(height=40)
@@ -454,17 +472,21 @@ def main(page: ft.Page):
 
     # ==========================================
     # ROUTING
-    # ==================================
+    # ==========================================
     def route_change(e):
         page.views.clear()
         if page.route == "/route":
-            page.views.append(ft.View("/route", [view_equipage_route()], bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(ft.View("/route", [view_equipage_route()],
+                                      bgcolor=AppColors.BG_GRAY, padding=0))
         elif page.route == "/embarquement":
-            page.views.append(ft.View("/embarquement", [view_embarquement()], bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(ft.View("/embarquement", [view_embarquement()],
+                                      bgcolor=AppColors.BG_GRAY, padding=0))
         elif page.route == "/patron":
-            page.views.append(ft.View("/patron", [view_patron()], bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(ft.View("/patron", [view_patron()],
+                                      bgcolor=AppColors.BG_GRAY, padding=0))
         else:
-            page.views.append(ft.View("/", [view_login()], bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(ft.View("/", [view_login()],
+                                      bgcolor=AppColors.BG_GRAY, padding=0))
         page.update()
 
     page.on_route_change = route_change
