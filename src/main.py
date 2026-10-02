@@ -114,7 +114,7 @@ def main(page: ft.Page):
                 ft.IconButton(ft.icons.ADD, on_click=inc, bgcolor=AppColors.YELLOW, icon_color=AppColors.DARK_BLUE),
             ], alignment=ft.MainAxisAlignment.CENTER),
             padding=15, bgcolor=AppColors.WHITE, border_radius=15,
-            shadow=ft.BoxShadow(blur_radius=5, color=ft.colors.with_opacity(0.05, "black"))
+            shadow=ft.BoxShadow(blur_radius=5, color="#11000000")
         )
 
     def counter_kg():
@@ -143,7 +143,7 @@ def main(page: ft.Page):
                 ], alignment=ft.MainAxisAlignment.CENTER)
             ]),
             padding=15, bgcolor=AppColors.WHITE, border_radius=15,
-            shadow=ft.BoxShadow(blur_radius=5, color=ft.colors.with_opacity(0.05, "black"))
+            shadow=ft.BoxShadow(blur_radius=5, color="#11000000")
         )
 
     # ==========================================
