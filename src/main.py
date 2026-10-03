@@ -476,21 +476,24 @@ def view_login():
     def route_change(e):
         page.views.clear()
         if page.route == "/route":
-            page.views.append(ft.View("/route", [view_equipage_route()],
-                                      bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(
+                ft.View("/route", [view_equipage_route()], bgcolor=AppColors.BG_GRAY, padding=0)
+            )
         elif page.route == "/embarquement":
-            page.views.append(ft.View("/embarquement", [view_embarquement()],
-                                      bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(
+                ft.View("/embarquement", [view_embarquement()], bgcolor=AppColors.BG_GRAY, padding=0)
+            )
         elif page.route == "/patron":
-            page.views.append(ft.View("/patron", [view_patron()],
-                                      bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(
+                ft.View("/patron", [view_patron()], bgcolor=AppColors.BG_GRAY, padding=0)
+            )
         else:
-            page.views.append(ft.View("/", [view_login()],
-                                      bgcolor=AppColors.BG_GRAY, padding=0))
+            page.views.append(
+                ft.View("/", [view_login()], bgcolor=AppColors.BG_GRAY, padding=0)
+            )
         page.update()
 
     page.on_route_change = route_change
     page.go("/")
 
-if __name__ == "__main__":
-    ft.app(target=main)
+ft.app(target=main)
