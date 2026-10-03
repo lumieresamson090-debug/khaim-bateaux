@@ -12,7 +12,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install flet==0.28.3
-      - run: flet build apk --module-name src.main --verbose
+      - run: cp src/main.py main.py
+      - run: flet build apk --verbose
       - uses: actions/upload-artifact@v4
         with:
           name: khaim-apk
