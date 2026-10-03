@@ -2,15 +2,10 @@
 name = "khaim-bateaux"
 version = "1.0.0"
 description = "K-HAIM BATEAU"
-dependencies = ["flet>=0.24.0", "requests"]
-requires-python = ">=3.10"
+dependencies = ["flet==0.28.3"]
+requires-python = ">=3.11"
 
 [tool.flet]
-product = "K-HAIM BATEAU"
-org = "com.khaim.bateau"
-company = "K-HAIM"
-copyright = "Copyright (C) 2026 by K-HAIM"
-icon = "assets/icon.png"
-
-[tool.flet.app]
-path = "src"
+app_name = "K-HAIM BATEAU"
+package_name = "com.khaim.bateau"
+assets_dir = "assets"
