@@ -2,7 +2,7 @@
 name = "khaim-bateaux"
 version = "1.0.0"
 description = "K-HAIM BATEAU"
-dependencies = ["flet==0.28.3"]
+dependencies = ["flet==0.28.3","request"]
 requires-python = ">=3.11"
 
 [tool.flet]
