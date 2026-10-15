@@ -2,12 +2,14 @@
 name = "khaim-bateaux"
 version = "1.0.0"
 description = "K-HAIM BATEAU"
-dependencies = ["flet==0.28.3","request"]
+dependencies = ["flet==0.28.3", "requests"]
 requires-python = ">=3.11"
 
 [tool.flet]
 app_name = "K-HAIM BATEAU"
-package_name = "com.khaim.bateau"
-assets_dir = "assets"
 org_name = "com.khaim"
-project_name = "bateau"
+product_name = "K-HAIM BATEAU"
+
+[tool.flet.app]
+module = "main"
+path = "src"
