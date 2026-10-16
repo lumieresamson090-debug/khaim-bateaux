@@ -28,7 +28,7 @@ PRIX_1ERE = 50
 PRIX_VIP = 80
 PRIX_KG = 2
 
-def main(page: ft.Page):
+def main_app(page: ft.Page):
     page.title = "K-HAIM BATEAU"
     page.theme_mode = ft.ThemeMode.LIGHT
     page.bgcolor = AppColors.BG_GRAY
@@ -469,5 +469,15 @@ def main(page: ft.Page):
 
     page.on_route_change = route_change
     page.go("/")
-    
-    ft.app(target=main)
+
+import traceback
+
+def main(page: ft.Page):
+    try:
+        main_app(page)
+    except Exception:
+        page.add(ft.Text(traceback.format_exc(), selectable=True, color="red"))
+        page.update()
+
+ft.app(target=main)
+
