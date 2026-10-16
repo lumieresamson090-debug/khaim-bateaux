@@ -455,9 +455,6 @@ def main_app(page: ft.Page):
     # ==========================================
     # ROUTING
     # ==================================
-    def main_app(page: ft.Page):
-    page.title = "K-HAIM"
-    page.bgcolor = ft.Colors.WHITE
 
     def route_change(e):
         page.views.clear()
