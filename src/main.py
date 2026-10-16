@@ -457,8 +457,8 @@ def main_app(page: ft.Page):
     # ==================================
     def route_change(e):
         page.views.clear()
-        if page.route == "/route":
-            page.views.append(ft.View("/route", [view_equipage_route()], bgcolor=AppColors.BG_GRAY, padding=0))
+        if page.route == "/embarquement":
+            page.views.append(ft.View("/embarquement", [view_equipage_route()], bgcolor=AppColors.BG_GRAY, padding=0))
         elif page.route == "/embarquement":
             page.views.append(ft.View("/embarquement", [view_embarquement()], bgcolor=AppColors.BG_GRAY, padding=0))
         elif page.route == "/patron":
@@ -468,7 +468,7 @@ def main_app(page: ft.Page):
         page.update()
 
     page.on_route_change = route_change
-    page.go("/")
+    page.go("page.route")
 
 import traceback
 
