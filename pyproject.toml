@@ -9,6 +9,7 @@ requires-python = ">=3.11"
 app_name = "K-HAIM BATEAU"
 org_name = "com.khaim"
 product_name = "K-HAIM BATEAU"
+icon = "assets/icon.png"
 permissions = ["android.permission.INTERNET"]
 
 [tool.flet.app]
