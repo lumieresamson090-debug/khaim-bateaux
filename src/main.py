@@ -471,6 +471,9 @@ def main_app(page: ft.Page):
         except Exception:
             page.views.append(ft.View("/", [ft.Text(traceback.format_exc(), selectable=True, color="red")]))
         page.update()
+
+page.on_route_change = route_change
+route_change(None)
     
 import traceback
 
