@@ -203,6 +203,7 @@ def main_app(page: ft.Page):
                 stats_row.controls.append(creer_stat_card("Recette", "0 $", AppColors.GREEN))
             else:
                 total_recette = 0
+                
                 total_passagers = 0
                 voyages_tries = sorted(
                     voyages.items(), key=lambda x: x[1].get("date", ""), reverse=True
