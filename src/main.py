@@ -469,7 +469,7 @@ def main_app(page: ft.Page):
         page.update()
     
     page.on_route_change = route_change
-    page.go(page.route)
+    route_change(None)
     
 import traceback
 
