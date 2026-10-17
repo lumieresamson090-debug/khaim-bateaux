@@ -28,7 +28,7 @@ PRIX_1ERE = 50
 PRIX_VIP = 80
 PRIX_KG = 2
 
-def main_app(page: ft.Page):
+def main(page: ft.Page):
     page.title = "K-HAIM BATEAU"
     page.theme_mode = ft.ThemeMode.LIGHT
     page.bgcolor = AppColors.BG_GRAY
@@ -403,7 +403,7 @@ def main_app(page: ft.Page):
                     expand=True,
                     auto_scroll=False,
                     spacing=0,
-                )
+                )a
             )
         ], expand=True)
     # ==========================================
@@ -455,34 +455,20 @@ def main_app(page: ft.Page):
     # ==========================================
     # ROUTING
     # ==================================
-
- def route_change(e):
+    def route_change(e):
         page.views.clear()
-        try:
-            if page.route == "/route":
-                v = view_equipage_route()
-            elif page.route == "/embarquement":
-                v = view_embarquement()
-            elif page.route == "/patron":
-                v = view_patron()
-            else:
-                v = view_login()
-            page.views.append(ft.View(page.route or "/", [v], bgcolor=AppColors.BG_GRAY, padding=0))
-        except Exception:
-            page.views.append(ft.View("/", [ft.Text(traceback.format_exc(), selectable=True, color="red")]))
+        if page.route == "/route":
+            page.views.append(ft.View("/route", [view_equipage_route()], bgcolor=AppColors.BG_GRAY, padding=0))
+        elif page.route == "/embarquement":
+            page.views.append(ft.View("/embarquement", [view_embarquement()], bgcolor=AppColors.BG_GRAY, padding=0))
+        elif page.route == "/patron":
+            page.views.append(ft.View("/patron", [view_patron()], bgcolor=AppColors.BG_GRAY, padding=0))
+        else:
+            page.views.append(ft.View("/", [view_login()], bgcolor=AppColors.BG_GRAY, padding=0))
         page.update()
 
-page.on_route_change = route_change
-route_change(None)
-    
-import traceback
+    page.on_route_change = route_change
+    page.go("/")
 
-def main(page: ft.Page):
-    try:
-        main_app(page)
-    except Exception:
-        page.add(ft.Text(traceback.format_exc(), selectable=True, color="red"))
-        page.update()
 
 ft.app(target=main)
-
