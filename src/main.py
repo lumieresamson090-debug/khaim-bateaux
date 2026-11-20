@@ -17,7 +17,7 @@ FIREBASE_URL = "https://k-haime-suivi-48bc4-default-rtdb.firebaseio.com"
 PATRON_PIN = "2497"  # ⚠️ À remplacer par Firebase Auth en production.
 
 PRIX_ECO = 25
-PRIX_1ERE = 50
+PRIX_1ERE = 50srcsrc
 PRIX_VIP = 80
 PRIX_KG = 2
 
@@ -559,7 +559,7 @@ def main(page: ft.Page):
                                 color=C.WHITE, on_click=patron
                             ),
                             ft.Container(height=25)
-                        ],
+                        ),
                         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                         alignment=ft.MainAxisAlignment.CENTER,
                         spacing=10
